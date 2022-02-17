@@ -1,7 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, TextInput, FlatList} from 'react-native';
 
-import {useState} from 'react';
 import {Button} from '../../components/Button';
 import {SkillCard} from '../../components/SkillCard';
 
@@ -11,13 +10,27 @@ export default function Home() {
   // mySkill contém as skills, o setMySkills é a função que adiciona ao mySkill
   const [mySkills, setMySkills] = useState([]);
 
+  const [greeting, setGreeting] = useState('');
   // handle é uma conveção para qualquer coisa que o usuário for clicar e ter uma funcionalidade
   function handleAddSkill() {
     setMySkills(oldState => [...oldState, newSkill]);
   }
+
+  useEffect(() => {
+    const currentHour = new Date().getHours();
+    if (currentHour < 12) {
+      setGreeting('Good morning');
+    } else if (currentHour >= 12 && currentHour < 18) {
+      setGreeting('Good afternoon');
+    } else {
+      setGreeting('Good Good night');
+    }
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome, Lucas</Text>
+      <Text style={styles.greetings}>{greeting}</Text>
       <TextInput
         style={styles.input}
         placeholder="New skill"
@@ -53,5 +66,8 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 30,
     borderRadius: 7,
+  },
+  greetings: {
+    color: '#FFF',
   },
 });
