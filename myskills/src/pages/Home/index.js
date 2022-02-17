@@ -23,7 +23,7 @@ export default function Home() {
     } else if (currentHour >= 12 && currentHour < 18) {
       setGreeting('Good afternoon');
     } else {
-      setGreeting('Good Good night');
+      setGreeting('Good night');
     }
   }, []);
 
