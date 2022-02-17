@@ -1,6 +1,6 @@
 # React Native Ignite 4.0
 
-![print](print/print.jpg)
+![print](prints/print.jpg)
 
 
 Check list
